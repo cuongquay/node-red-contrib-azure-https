@@ -28,10 +28,6 @@ SOFTWARE.
 	<label for="node-input-name">Name</label>
 	<input type="text" id="node-input-name" placeholder="Name">
 	</div>
-	<div class="form-row">
-	<label for="node-input-deviceId">Device</label>
-	<select type="text" id="node-input-deviceId"></select>
-	</div>
 </script>
 
 <script type="text/x-red" data-help-name="azure-https out">
@@ -46,9 +42,6 @@ SOFTWARE.
 		defaults : {
 			name : {
 				value : ""
-			},
-			deviceId : {
-				value : ""
 			}
 		},
 		inputs : 1,
@@ -60,29 +53,6 @@ SOFTWARE.
 		},
 		labelStyle : function() {
 			return this.name ? "node_label_italic" : "";
-		},
-		oneditprepare : function() {
-			var that = this;
-			function fulfillOptions(data) {
-				$("#node-input-deviceId").empty();
-				$.each(data, function(index, value) {
-					if (value != "") {
-						if (that.deviceId == value) {
-							$("#node-input-deviceId").append('<option value="' + value + '" selected>' + value + '</option>');
-						} else {
-							$("#node-input-deviceId").append('<option value="' + value + '">' + value + '</option>');
-						}
-					}
-				});
-				$("#node-input-deviceId").change();
-			}
-
-			$.get("/azure/devices", function(data) {
-				fulfillOptions(data);
-			}).fail(function() {
-				var certs = [];
-				fulfillOptions(data);
-			});
 		}
 	}); 
 </script>
@@ -92,10 +62,6 @@ SOFTWARE.
 	<div class="form-row">
 	<label for="node-input-name">Name</label>
 	<input type="text" id="node-input-name" placeholder="Name">
-	</div>
-	<div class="form-row">
-	<label for="node-input-deviceId">Device</label>
-	<select type="text" id="node-input-deviceId"></select>
 	</div>
 </script>
 
@@ -112,9 +78,6 @@ SOFTWARE.
 		defaults : {
 			name : {
 				value : ""
-			},
-			deviceId : {
-				value : ""
 			}
 		},
 		inputs : 1,
@@ -126,29 +89,6 @@ SOFTWARE.
 		},
 		labelStyle : function() {
 			return this.name ? "node_label_italic" : "";
-		},
-		oneditprepare : function() {
-			var that = this;
-			function fulfillOptions(data) {
-				$("#node-input-deviceId").empty();
-				$.each(data, function(index, value) {
-					if (value != "") {
-						if (that.deviceId == value) {
-							$("#node-input-deviceId").append('<option value="' + value + '" selected>' + value + '</option>');
-						} else {
-							$("#node-input-deviceId").append('<option value="' + value + '">' + value + '</option>');
-						}
-					}
-				});
-				$("#node-input-deviceId").change();
-			}
-
-			$.get("/azure/devices", function(data) {
-				fulfillOptions(data);
-			}).fail(function() {
-				var certs = [];
-				fulfillOptions(data);
-			});
 		}
 	}); 
 </script>

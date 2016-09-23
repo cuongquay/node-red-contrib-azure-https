@@ -69,7 +69,7 @@ module.exports = function(RED) {
 								node.device._transport.getReceiver(function(err, rcv) {
 									if (!err) {
 										rcv.on('message', function(msg) {
-											console.log('recieve success', msg);
+											console.log('RECVED-MSG', msg);
 											if (msg.getData().length) {
 												node.send({
 													error : err,
@@ -169,7 +169,9 @@ module.exports = function(RED) {
 									}
 									var message = new Message(msg.payload);
 									node.device.sendEvent(message, function(err, res) {
+										console.log('SENT-MSG', res, err);
 										msg.error = err;
+										msg.payload = res;
 										node.send(msg);
 										node.status({});
 									});
