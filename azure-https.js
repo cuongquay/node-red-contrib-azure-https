@@ -92,6 +92,13 @@ module.exports = function(RED) {
 												}
 											});
 										});
+										rcv.on('errorReceived', function (err) {								            
+								            node.status({
+												fill : "red",
+												shape : "dot",
+												text : err.message
+											});
+								        });
 									} else {
 										node.status({
 											fill : "red",
