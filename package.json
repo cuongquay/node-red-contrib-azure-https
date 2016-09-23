@@ -1,12 +1,12 @@
 {
     "name"          : "node-red-contrib-azure-https",
-    "version"       : "0.1.1",
+    "version"       : "0.1.2",
     "description"   : "A aws-iot node for Node-RED",
     "dependencies"  : {
-    	"azure-iot-device-http" : ">=1.0.10",
-		"azure-iot-device-amqp" : ">=1.0.9",
-        "azure-iot-common": ">=1.0.9",
-	    "azure-iot-device": ">=1.0.9",
+    	"azure-iot-device": "1.0.14",
+    	"azure-iot-device-amqp": "1.0.14",
+    	"azure-iot-device-http": "1.0.15",
+    	"azure-iot-device-mqtt": "1.0.14",
 	    "q": "^1.4.1" 
     },
     "license": "Apache-2.0",
