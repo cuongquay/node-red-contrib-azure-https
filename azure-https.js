@@ -43,8 +43,8 @@ module.exports = function(RED) {
 		node.on("input", function(message) {
 			node.deviceId = message.deviceId || node.deviceId;
 			if (node.deviceId) {
-				var userDir = RED.settings.get('userDir');
-				console.log("FILE", userDir + '/' + node.deviceId + "/device.json");
+				var userDir = RED.settings.userDir;
+				console.log("FILE", userDir + node.deviceId + "/device.json");
 				fs.readFile(userDir + '/' + node.deviceId + "/device.json", 'utf8', function(err, data) {
 					if (err) {
 						node.status({
@@ -136,8 +136,8 @@ module.exports = function(RED) {
 		node.on("input", function(msg) {
 			node.deviceId = msg.deviceId || node.deviceId;
 			if (node.deviceId) {
-				var userDir = RED.settings.get('userDir');
-				console.log("FILE", userDir + '/' + node.deviceId + "/device.json");
+				var userDir = RED.settings.userDir;
+				console.log("FILE", userDir + node.deviceId + "/device.json");
 				fs.readFile(userDir + '/' + node.deviceId + "/device.json", 'utf8', function(err, data) {
 					if (err) {
 						node.status({
