@@ -46,6 +46,7 @@ module.exports = function(RED) {
 			node.deviceId = message.deviceId || node.deviceId;
 			if (node.deviceId) {
 				var userDir = RED.settings.userDir;
+				userDir = userDir[userDir.length -1]=="/"? userDir : userDir + "/";
 				console.log("FILE", userDir + node.deviceId + "/device.json");
 				fs.readFile(userDir + '/' + node.deviceId + "/device.json", 'utf8', function(err, data) {
 					if (err) {
@@ -139,6 +140,7 @@ module.exports = function(RED) {
 			node.deviceId = msg.deviceId || node.deviceId;
 			if (node.deviceId) {
 				var userDir = RED.settings.userDir;
+				userDir = userDir[userDir.length -1]=="/"? userDir : userDir + "/";
 				console.log("FILE", userDir + node.deviceId + "/device.json");
 				fs.readFile(userDir + '/' + node.deviceId + "/device.json", 'utf8', function(err, data) {
 					if (err) {
