@@ -43,9 +43,9 @@ module.exports = function(RED) {
 		node.on("input", function(message) {
 			node.deviceId = message.deviceId || node.deviceId;
 			if (node.deviceId) {
-				var contextGlobal = RED.settings.get('functionGlobalContext');
-				console.log("FILE", contextGlobal.safeStorage + '/' + node.deviceId + "/device.json");
-				fs.readFile(contextGlobal.safeStorage + '/' + node.deviceId + "/device.json", 'utf8', function(err, data) {
+				var userDir = RED.settings.get('userDir');
+				console.log("FILE", userDir + '/' + node.deviceId + "/device.json");
+				fs.readFile(userDir + '/' + node.deviceId + "/device.json", 'utf8', function(err, data) {
 					if (err) {
 						node.status({
 							fill : "red",
@@ -137,8 +137,8 @@ module.exports = function(RED) {
 			node.deviceId = msg.deviceId || node.deviceId;
 			if (node.deviceId) {
 				var contextGlobal = RED.settings.get('functionGlobalContext');
-				console.log("FILE", contextGlobal.safeStorage + '/' + node.deviceId + "/device.json");
-				fs.readFile(contextGlobal.safeStorage + '/' + node.deviceId + "/device.json", 'utf8', function(err, data) {
+				console.log("FILE", userDir + '/' + node.deviceId + "/device.json");
+				fs.readFile(userDir + '/' + node.deviceId + "/device.json", 'utf8', function(err, data) {
 					if (err) {
 						node.status({
 							fill : "red",
@@ -191,7 +191,6 @@ module.exports = function(RED) {
 			}
 		});
 	}
-
 
 	RED.nodes.registerType("azure-https out", azureIoTHubHttpNodeOut);
 
