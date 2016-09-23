@@ -1,6 +1,6 @@
 {
     "name"          : "node-red-contrib-azure-https",
-    "version"       : "0.1.5",
+    "version"       : "0.1.6",
     "description"   : "A aws-iot node for Node-RED",
     "dependencies"  : {
     	"azure-iot-device": "1.0.14",
