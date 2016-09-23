@@ -31,7 +31,9 @@ module.exports = function(RED) {
 	var Client = Device.Client;
 	var Message = Device.Message;
 	var Http = Device.Http;
-
+	
+	require('events').EventEmitter.defaultMaxListeners = Infinity;
+	require('events').EventEmitter.prototype._maxListeners = 0;
 	/**
 	 * Create Azure-IoT-Hub HTTP Input (cloud-to-device) node
 	 */
