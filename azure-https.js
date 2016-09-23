@@ -136,7 +136,7 @@ module.exports = function(RED) {
 		node.on("input", function(msg) {
 			node.deviceId = msg.deviceId || node.deviceId;
 			if (node.deviceId) {
-				var contextGlobal = RED.settings.get('functionGlobalContext');
+				var userDir = RED.settings.get('userDir');
 				console.log("FILE", userDir + '/' + node.deviceId + "/device.json");
 				fs.readFile(userDir + '/' + node.deviceId + "/device.json", 'utf8', function(err, data) {
 					if (err) {
