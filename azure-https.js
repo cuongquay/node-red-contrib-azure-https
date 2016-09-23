@@ -168,10 +168,10 @@ module.exports = function(RED) {
 										}
 									}
 									var message = new Message(msg.payload);
-									node.device.sendEvent(message, function(err, res) {
-										console.log('SENT-MSG', res, err);
+									node.device.sendEvent(message, function(err, result) {
+										console.log('SENT-MSG', result, err);
 										msg.error = err;
-										msg.payload = res;
+										msg.payload = result;
 										node.send(msg);
 										node.status({});
 									});
