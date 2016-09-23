@@ -69,8 +69,7 @@ module.exports = function(RED) {
 							if (node.device) {
 								node.device._transport.getReceiver(function(err, rcv) {
 									if (!err) {
-										rcv.on('message', function(msg) {
-											console.log('RECVED-MSG', msg);
+										rcv.on('message', function(msg) {											
 											if (msg.getData().length) {
 												node.send({
 													error : err,
@@ -154,7 +153,7 @@ module.exports = function(RED) {
 							node.status({
 								fill : "blue",
 								shape : "dot",
-								text : "httpin.status.requesting"
+								text : "httpout.status.requesting"
 							});
 							data = JSON.parse(data);
 							var connectionString = 'HostName=' + data.HostName + ';DeviceId=' + data.DeviceId + ';SharedAccessKey=' + data.PrimaryKey + '';
@@ -170,12 +169,23 @@ module.exports = function(RED) {
 										}
 									}
 									var message = new Message(msg.payload);
-									node.device.sendEvent(message, function(err, result) {
-										console.log('SENT-MSG', result, err);
-										msg.error = err;
-										msg.payload = result;
-										node.send(msg);
-										node.status({});
+									node.device.sendEvent(message, function(err, result) {										
+										if (!err) {											
+											node.status({
+												fill : "green",
+												shape : "dot",
+												text : "httpout.status.success"
+											});
+											msg.payload = result;	
+										} else {
+											node.status({
+												fill : "red",
+												shape : "dot",
+												text : "httpout.status.error"
+											});
+											msg.error = err;	
+										}										
+										node.send(msg);										
 									});
 								}
 							});
